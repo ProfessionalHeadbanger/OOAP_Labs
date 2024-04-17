@@ -1,6 +1,6 @@
 package org.example;
 
-public interface ParserStrategy
+public interface ParserStrategy extends Info
 {
     String parse(String inputLine);
 }

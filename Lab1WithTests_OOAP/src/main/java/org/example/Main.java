@@ -31,24 +31,30 @@ public class Main
             System.out.println("3. Буквы и цифры.");
             int choice = scanner.nextInt();
 
-            AbstractParser parser;
+            ParserStrategy parser;
             switch (choice)
             {
                 case 1:
-                    parser = new LettersParser(new ParserOfLetters());
+                    parser = new ParserOfLetters();
                     break;
                 case 2:
-                    parser = new DigitsParser(new ParserOfDigits());
+                    parser = new ParserOfDigits();
                     break;
                 case 3:
-                    parser = new LettersAndDigitsParser(new ParserOfLettersAndDigits());
+                    parser = new ParserOfLettersAndDigits();
                     break;
                 default:
                     System.out.println("Неправильный ввод");
                     return;
             }
 
-            parser.execute(inputline);
+            parser.printAlgorithmName();
+            parser.printAlgorithmDescription();
+            long startTime = System.currentTimeMillis();
+            System.out.println("Результат парсинга: " + parser.parse(inputline));
+            long endTime = System.currentTimeMillis();
+            long executionTime = endTime - startTime;
+            System.out.println("Время выполнения алгоритма: " + executionTime + " миллисекунд.");
         }
         catch (IOException error)
         {
